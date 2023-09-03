@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <style>
+    *{
+        background-color: greenyellow;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        padding: 12px;
+        gap:10px;
+    }
+    .dices{
+        display: flex;
+        justify-content: center;
+        gap:2rem;
+
+    }
+   
+    #img1,#img2{
+        height: 20rem;
+        width: 24rem;
+    }
+   button{
+    padding: 12px;
+    margin: 22px;
+    background-color: black;
+    color:white;
+    width: 10rem;
+    font-size: 2rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 22px;
+   }
+   span{
+    color:red;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   }
+   </style>
+</head>
+
+<body>
+    <h1 ></h1>
+    <div class="dices">
+        <div id="first">
+            <img id="img1" src="" alt="image not found" />
+        </div>
+        <div id="second">
+            <img id="img2" src="" alt="image not found" />
+        </div>
+    </div>
+    <center><button>Turn Dice</button></center>
+    <script>
+        let flag = false;
+        let winner;
+        let image1=document.getElementById('img1');
+        let image2=document.getElementById('img2');
+       
+        let button = document.querySelector('button');
+        if (button.addEventListener('click', () => {
+            flag = true;
+            image1.style.display="block";
+            image2.style.display="block";
+            if (flag == true) {
+                let arr = ['img/dice-six-faces-one.png', 'img/dice-six-faces-two.png', 'img/dice-six-faces-three.png','img/dice-six-faces-four.png','img/dice-six-faces-five.png','img/dice-six-faces-six.png'];
+                let dice1 = Math.floor(Math.random() * arr.length);
+                let dice2 = Math.floor(Math.random() * arr.length);
+              
+                image1.setAttribute('src',arr[dice1]);
+                image2.setAttribute('src',arr[dice2]);
+                if(dice1!=dice2)
+                {
+                    if (dice1 > dice2)
+                {
+                    winner = 1;
+                }
+                else 
+                winner = 2;
+                heading.innerHTML = `Player <span> &#128525 ${winner} </span> Wins!`;
+                }
+               else  heading.innerHTML = `Match Draw!`;
+              
+            }
+        }));
+        let heading = document.querySelector('h1');
+        console.log(flag);
+        if (flag == false)
+        {
+            heading.innerHTML = "Press the Button and start game &#128512;";
+            image2.style.display="none";
+            image1.setAttribute('src','img/dice-target.png');
+           
+        }
+          
+
+    </script>
+</body>
+
+</html>
